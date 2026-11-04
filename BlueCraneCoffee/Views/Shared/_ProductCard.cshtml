@@ -1,0 +1,23 @@
+@model Product
+<article class="product">
+    <div class="product-img">
+        @if (!string.IsNullOrEmpty(Model.Badge))
+        {
+            <span class="badge">@Model.Badge</span>
+        }
+        <img src="~/images/products/@Model.Image" alt="@Model.Name" width="400" height="400" loading="lazy" />
+    </div>
+    <div class="product-body">
+        <p class="origin">@Model.Origin</p>
+        <h3>@Model.Name</h3>
+        <p class="notes">@Model.Notes</p>
+        <div class="product-foot">
+            <span class="price">@Model.Price.Money()</span>
+            <form asp-controller="Cart" asp-action="Add" method="post">
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <input type="hidden" name="returnUrl" value="@(Context.Request.Path + Context.Request.QueryString)" />
+                <button type="submit" class="btn btn-sun small">Add to cart</button>
+            </form>
+        </div>
+    </div>
+</article>

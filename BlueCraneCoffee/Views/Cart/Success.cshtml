@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Order placed";
+}
+
+<section class="page-head">
+    <div class="wrap narrow">
+        <h1>Thank you, @TempData["OrderName"]</h1>
+        <p class="lead">Order #@TempData["OrderId"] for @TempData["OrderTotal"] is in. We'll email EFT details and roast your beans this week.</p>
+        <p><a class="btn btn-ink" asp-controller="Home" asp-action="Index">Back to home</a> <a class="btn btn-line" asp-controller="Shop" asp-action="Index">Keep shopping</a></p>
+    </div>
+</section>

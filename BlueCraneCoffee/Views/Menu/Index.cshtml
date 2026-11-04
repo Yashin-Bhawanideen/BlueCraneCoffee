@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Coffee bar";
+}
+
+<section class="page-head">
+    <div class="wrap">
+        <h1>Coffee bar</h1>
+        <p class="lead">Made with our house blend unless you ask for single origin. Oat, almond and soy milk are always available.</p>
+    </div>
+</section>
+
+<section class="wrap menu-wrap">
+    <h2>Coffee</h2>
+    <div class="drink-grid">
+        @foreach (var d in MenuData.Drinks)
+        {
+            <article class="drink">
+                <img src="~/images/drinks/@d.Image" alt="@d.Name" width="200" height="200" loading="lazy" />
+                <div>
+                    <div class="drink-top"><h3>@d.Name</h3><span class="price">@d.Price.Money()</span></div>
+                    <p>@d.Description</p>
+                </div>
+            </article>
+        }
+    </div>
+
+    <h2 class="gap">Bakery and light bites</h2>
+    <ul class="bakery">
+        @foreach (var b in MenuData.Bakery)
+        {
+            <li>
+                <div><h3>@b.Name</h3><p>@b.Description</p></div>
+                <span class="price">@b.Price.Money()</span>
+            </li>
+        }
+    </ul>
+</section>

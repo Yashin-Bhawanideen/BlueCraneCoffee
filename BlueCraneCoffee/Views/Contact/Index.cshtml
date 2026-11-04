@@ -1,0 +1,45 @@
+@model ContactMessage
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<section class="page-head">
+    <div class="wrap">
+        <h1>Say hello</h1>
+        <p class="lead">Wholesale, events, brewing questions or just coffee talk. We read everything.</p>
+    </div>
+</section>
+
+<section class="wrap cart-wrap">
+    @if (TempData["Sent"] is string sent)
+    {
+        <div class="toast" role="status">@sent</div>
+    }
+    <div class="cart-grid">
+        <form asp-action="Index" method="post" class="form-card" novalidate>
+            <div asp-validation-summary="ModelOnly" class="alert"></div>
+            <div class="field">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" autocomplete="name" />
+                <span asp-validation-for="Name" class="err"></span>
+            </div>
+            <div class="field">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" autocomplete="email" />
+                <span asp-validation-for="Email" class="err"></span>
+            </div>
+            <div class="field">
+                <label asp-for="Message"></label>
+                <textarea asp-for="Message" rows="6"></textarea>
+                <span asp-validation-for="Message" class="err"></span>
+            </div>
+            <button type="submit" class="btn btn-ink wide">Send message</button>
+        </form>
+        <aside class="summary">
+            <h3>Visit the roastery</h3>
+            <p>48 Jacaranda Street, Hatfield<br />Pretoria, 0083</p>
+            <p>Monday to Friday 06:30 to 17:00<br />Saturday 07:00 to 15:00<br />Sunday 08:00 to 13:00</p>
+            <p>012 555 0188<br />hello@@bluecrane.example</p>
+        </aside>
+    </div>
+</section>

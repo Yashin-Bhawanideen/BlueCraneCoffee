@@ -1,0 +1,69 @@
+@model CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<section class="page-head">
+    <div class="wrap">
+        <h1>Checkout</h1>
+        <p class="lead">Delivery within South Africa takes 2 to 4 working days. Payment is by EFT after you place the order.</p>
+    </div>
+</section>
+
+<section class="wrap cart-wrap">
+    <div class="cart-grid">
+        <form asp-action="Checkout" method="post" class="form-card" novalidate>
+            <div asp-validation-summary="ModelOnly" class="alert"></div>
+
+            <div class="field">
+                <label asp-for="Form.CustomerName"></label>
+                <input asp-for="Form.CustomerName" autocomplete="name" />
+                <span asp-validation-for="Form.CustomerName" class="err"></span>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label asp-for="Form.Email"></label>
+                    <input asp-for="Form.Email" type="email" autocomplete="email" />
+                    <span asp-validation-for="Form.Email" class="err"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="Form.Phone"></label>
+                    <input asp-for="Form.Phone" type="tel" autocomplete="tel" />
+                    <span asp-validation-for="Form.Phone" class="err"></span>
+                </div>
+            </div>
+            <div class="field">
+                <label asp-for="Form.AddressLine"></label>
+                <input asp-for="Form.AddressLine" autocomplete="street-address" />
+                <span asp-validation-for="Form.AddressLine" class="err"></span>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label asp-for="Form.City"></label>
+                    <input asp-for="Form.City" autocomplete="address-level2" />
+                    <span asp-validation-for="Form.City" class="err"></span>
+                </div>
+                <div class="field">
+                    <label asp-for="Form.PostalCode"></label>
+                    <input asp-for="Form.PostalCode" autocomplete="postal-code" />
+                    <span asp-validation-for="Form.PostalCode" class="err"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-ink wide">Place order, @Model.Cart.Total.Money()</button>
+        </form>
+
+        <aside class="summary">
+            <h3>In your order</h3>
+            <ul class="mini">
+                @foreach (var i in Model.Cart.Items)
+                {
+                    <li><span>@i.Quantity x @i.Name</span><b>@i.LineTotal.Money()</b></li>
+                }
+            </ul>
+            <dl>
+                <div><dt>Delivery</dt><dd>@(Model.Cart.Shipping == 0 ? "Free" : Model.Cart.Shipping.Money())</dd></div>
+                <div class="total"><dt>Total</dt><dd>@Model.Cart.Total.Money()</dd></div>
+            </dl>
+        </aside>
+    </div>
+</section>

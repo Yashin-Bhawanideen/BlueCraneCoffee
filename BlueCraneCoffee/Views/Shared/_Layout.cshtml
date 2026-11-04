@@ -1,0 +1,67 @@
+@{
+    var current = ViewContext.RouteData.Values["controller"]?.ToString() ?? "Home";
+    string Active(string c) => string.Equals(current, c, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+    var cartCount = CartSession.Count(Context.Session);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] | Blue Crane Coffee Roasters</title>
+    <meta name="description" content="Small-batch coffee roasters in Pretoria. Fresh beans, brewing gear and a neighbourhood coffee bar." />
+    <link rel="icon" href="~/images/logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="site-header" id="siteHeader">
+        <div class="wrap header-inner">
+            <a class="brand" asp-controller="Home" asp-action="Index" aria-label="Blue Crane Coffee home">
+                <img src="~/images/logo.svg" alt="" width="38" height="38" />
+                <span>Blue Crane</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+                <span></span><span></span>
+            </button>
+            <nav id="mainNav" class="main-nav" aria-label="Main">
+                <a class="@Active("Menu")" asp-controller="Menu" asp-action="Index">Coffee bar</a>
+                <a class="@Active("Shop")" asp-controller="Shop" asp-action="Index">Shop beans</a>
+                <a class="@Active("About")" asp-controller="About" asp-action="Index">About</a>
+                <a class="@Active("Contact")" asp-controller="Contact" asp-action="Index">Contact</a>
+                <a class="btn btn-sun cart-btn" asp-controller="Cart" asp-action="Index">
+                    Cart <span class="count" aria-label="@cartCount items in cart">@cartCount</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-grid">
+            <div>
+                <div class="brand brand-foot"><img src="~/images/logo.svg" alt="" width="38" height="38" /><span>Blue Crane</span></div>
+                <p>Small-batch coffee, roasted weekly in Pretoria.</p>
+            </div>
+            <div>
+                <h4>Coffee bar hours</h4>
+                <p>Monday to Friday 06:30 to 17:00<br />Saturday 07:00 to 15:00<br />Sunday 08:00 to 13:00</p>
+            </div>
+            <div>
+                <h4>Roastery</h4>
+                <p>48 Jacaranda Street, Hatfield<br />Pretoria, 0083<br />hello@@bluecrane.example</p>
+            </div>
+        </div>
+        <div class="wrap foot-base">&copy; @DateTime.Now.Year Blue Crane Coffee Roasters. A demo coffee shop website.</div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

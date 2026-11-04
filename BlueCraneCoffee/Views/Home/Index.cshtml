@@ -1,0 +1,73 @@
+@model List<Product>
+@{
+    ViewData["Title"] = "Small-batch coffee roasters";
+}
+
+<section class="hero">
+    <div class="hero-left">
+        <div class="hero-copy">
+            <p class="sticker">Roasted weekly in Pretoria</p>
+            <h1>Coffee with a clear point of view.</h1>
+            <p class="lead">We roast small batches of single-origin beans, brew them properly at our bar and ship them to your door within days of roasting.</p>
+            <div class="hero-cta">
+                <a class="btn btn-ink" asp-controller="Shop" asp-action="Index">Shop beans</a>
+                <a class="btn btn-line" asp-controller="Menu" asp-action="Index">Visit the bar</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-right" aria-hidden="true">
+        <img src="~/images/hero-cup.svg" alt="" width="620" height="620" />
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrap">
+        <div class="section-head">
+            <h2>Start here</h2>
+            <p>Three favourites that cover most mornings.</p>
+        </div>
+        <div class="product-grid">
+            @foreach (var p in Model)
+            {
+                <partial name="_ProductCard" model="p" />
+            }
+        </div>
+        <p class="center-row"><a class="btn btn-ink" asp-controller="Shop" asp-action="Index">See everything</a></p>
+    </div>
+</section>
+
+<section class="section block-crane">
+    <div class="wrap">
+        <div class="section-head">
+            <h2>From farm to your cup</h2>
+            <p>Four steps, each done with care and a timer.</p>
+        </div>
+        <ol class="steps">
+            <li><h3>1. Sourced</h3><p>We buy directly from farms and co-ops in Ethiopia, Kenya, Colombia and Brazil, paying above fair-trade prices.</p></li>
+            <li><h3>2. Roasted</h3><p>Every batch is profiled, cupped and logged. Light for fruit, dark for chocolate, never burnt.</p></li>
+            <li><h3>3. Rested</h3><p>Coffee needs a few days to settle after roasting. We ship at day five, when it tastes best.</p></li>
+            <li><h3>4. Poured</h3><p>Brew at home with our guides or let our baristas do it at the bar. Both taste better fresh.</p></li>
+        </ol>
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrap bar-split">
+        <div class="bar-art"><img src="~/images/drinks/flatwhite.svg" alt="A flat white with latte art" width="480" height="480" loading="lazy" /></div>
+        <div>
+            <h2>The coffee bar</h2>
+            <p>Pop into the roastery for a flat white, a warm croissant and a look at the roaster in action. We open at 06:30 on weekdays.</p>
+            <p><a class="btn btn-ink" asp-controller="Menu" asp-action="Index">See the menu</a></p>
+        </div>
+    </div>
+</section>
+
+<section class="cta-band">
+    <div class="wrap cta-inner">
+        <div>
+            <h2>Free delivery over R500</h2>
+            <p>Order before 12:00 on weekdays and we'll roast and dispatch the same week.</p>
+        </div>
+        <a class="btn btn-ink" asp-controller="Shop" asp-action="Index">Shop now</a>
+    </div>
+</section>

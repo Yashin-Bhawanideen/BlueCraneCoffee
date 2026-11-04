@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img">
+  <rect width="400" height="400" fill="#dbe8f1"/><circle cx="200" cy="210" r="150" fill="#eef5fa"/>
+  <ellipse cx="200" cy="360" rx="105" ry="12" fill="#12283d" opacity=".18"/>
+  
+  <path d="M108 92 L292 92 L308 340 Q308 354 294 354 L106 354 Q92 354 92 340 Z" fill="#7a4a2c" stroke="#12283d" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="108" y="92" width="184" height="30" fill="#12283d" opacity=".18"/>
+  <path d="M108 122 H292" stroke="#12283d" stroke-width="4"/>
+  <line x1="118" y1="98" x2="118" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="132" y1="98" x2="132" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="146" y1="98" x2="146" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="160" y1="98" x2="160" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="174" y1="98" x2="174" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="188" y1="98" x2="188" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="202" y1="98" x2="202" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="216" y1="98" x2="216" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="230" y1="98" x2="230" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="244" y1="98" x2="244" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="258" y1="98" x2="258" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="272" y1="98" x2="272" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/><line x1="286" y1="98" x2="286" y2="116" stroke="#12283d" stroke-width="2" opacity=".5"/>
+  <rect x="128" y="150" width="144" height="170" rx="12" fill="#f7f5f0" stroke="#12283d" stroke-width="4"/>
+  <rect x="128" y="286" width="144" height="34" rx="0" fill="#e3b98f" stroke="#12283d" stroke-width="4"/>
+  <g transform="translate(200 192) scale(1.0)" fill="#12283d">
+  <ellipse cx="0" cy="8" rx="16" ry="10"/><path d="M8 4 C20 -6 14 -22 4 -26 C0 -28 -2 -24 2 -22 C8 -18 6 -8 -4 0Z"/>
+  <circle cx="4" cy="-27" r="4.5"/><path d="M8 -28 L22 -25 L8 -24Z"/><path d="M-4 16 L-8 32 M4 16 L8 32" stroke="#12283d" stroke-width="2.5" fill="none"/></g>
+  <text x="200" y="244" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="12" fill="#12283d" letter-spacing="1.5">BLUE CRANE</text>
+  <text x="200" y="268" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="19" fill="#12283d">BRAZIL</text>
+  <text x="200" y="309" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="12" fill="#12283d">250g | MED-DARK</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img">
+  <rect width="300" height="300" fill="#cfe5d0"/>
+  <ellipse cx="150" cy="260" rx="0" ry="0"/>
+  <circle cx="150" cy="150" r="116" fill="#fff" stroke="#12283d" stroke-width="4"/>
+  <circle cx="150" cy="150" r="94" fill="none" stroke="#12283d" stroke-width="2" opacity=".25"/>
+  <rect x="236" y="138" width="46" height="24" rx="12" fill="#fff" stroke="#12283d" stroke-width="4"/>
+  <circle cx="150" cy="150" r="82" fill="#fff" stroke="#12283d" stroke-width="4"/>
+  <circle cx="150" cy="150" r="68" fill="#c58a4e"/>
+  <circle cx="150" cy="150" r="64" fill="#d9ae7e"/><path d="M116 118 Q150 110 184 118 Q150 130 116 118Z" fill="#fff"/><path d="M121 131 Q150 123 179 131 Q150 143 121 131Z" fill="#fff"/><path d="M126 144 Q150 136 174 144 Q150 156 126 144Z" fill="#fff"/><path d="M131 157 Q150 149 169 157 Q150 169 131 157Z" fill="#fff"/><path d="M136 170 Q150 162 164 170 Q150 182 136 170Z" fill="#fff"/><path d="M150 112 V196" stroke="#a9753f" stroke-width="3"/>
+  <path d="M96 116 C108 92 132 82 156 82" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".35"/>
+</svg>

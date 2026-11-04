@@ -1,0 +1,32 @@
+@model List<Product>
+@{
+    ViewData["Title"] = "Shop";
+    var cat = ViewData["Category"] as string;
+}
+
+<section class="page-head">
+    <div class="wrap">
+        <h1>Shop</h1>
+        <p class="lead">Beans roasted this week, plus the gear to brew them well. Free delivery over R500.</p>
+        <nav class="chips" aria-label="Filter products">
+            <a class="@(string.IsNullOrEmpty(cat) ? "on" : "")" asp-action="Index">All</a>
+            @foreach (var c in ProductData.Categories)
+            {
+                <a class="@(string.Equals(cat, c, StringComparison.OrdinalIgnoreCase) ? "on" : "")" asp-action="Index" asp-route-category="@c">@c</a>
+            }
+        </nav>
+    </div>
+</section>
+
+<section class="wrap shop-wrap">
+    @if (TempData["Added"] is string added)
+    {
+        <div class="toast" role="status">@added <a asp-controller="Cart" asp-action="Index">View cart</a></div>
+    }
+    <div class="product-grid four">
+        @foreach (var p in Model)
+        {
+            <partial name="_ProductCard" model="p" />
+        }
+    </div>
+</section>

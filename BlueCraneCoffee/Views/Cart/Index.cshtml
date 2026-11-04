@@ -1,0 +1,64 @@
+@model CartSummary
+@{
+    ViewData["Title"] = "Your cart";
+}
+
+<section class="page-head">
+    <div class="wrap">
+        <h1>Your cart</h1>
+    </div>
+</section>
+
+<section class="wrap cart-wrap">
+@if (Model.Items.Count == 0)
+{
+    <div class="empty">
+        <h2>Your cart is empty</h2>
+        <p>Add a bag of beans and it will show up here.</p>
+        <a class="btn btn-ink" asp-controller="Shop" asp-action="Index">Shop beans</a>
+    </div>
+}
+else
+{
+    <div class="cart-grid">
+        <div class="cart-lines">
+            @foreach (var item in Model.Items)
+            {
+                <div class="cart-line">
+                    <img src="~/images/products/@item.Image" alt="" width="90" height="90" />
+                    <div class="cl-info">
+                        <h3>@item.Name</h3>
+                        <p class="origin">@item.Price.Money() each</p>
+                    </div>
+                    <form asp-action="Update" method="post" class="qty-form">
+                        <input type="hidden" name="productId" value="@item.ProductId" />
+                        <label class="sr" for="qty-@item.ProductId">Quantity</label>
+                        <input id="qty-@item.ProductId" type="number" name="quantity" min="0" max="20" value="@item.Quantity" />
+                        <button class="btn btn-line small" type="submit">Update</button>
+                    </form>
+                    <div class="cl-total">@item.LineTotal.Money()</div>
+                    <form asp-action="Remove" method="post">
+                        <input type="hidden" name="productId" value="@item.ProductId" />
+                        <button class="link-btn" type="submit" aria-label="Remove @item.Name">Remove</button>
+                    </form>
+                </div>
+            }
+        </div>
+
+        <aside class="summary">
+            <h3>Order summary</h3>
+            <dl>
+                <div><dt>Subtotal</dt><dd>@Model.Subtotal.Money()</dd></div>
+                <div><dt>Delivery</dt><dd>@(Model.Shipping == 0 ? "Free" : Model.Shipping.Money())</dd></div>
+                <div class="total"><dt>Total</dt><dd>@Model.Total.Money()</dd></div>
+            </dl>
+            @if (Model.Shipping > 0)
+            {
+                <p class="origin">Add @((CartSummary.FreeShippingThreshold - Model.Subtotal).Money()) more for free delivery.</p>
+            }
+            <a class="btn btn-ink wide" asp-action="Checkout">Go to checkout</a>
+            <a class="text-link" asp-controller="Shop" asp-action="Index">Keep shopping</a>
+        </aside>
+    </div>
+}
+</section>
