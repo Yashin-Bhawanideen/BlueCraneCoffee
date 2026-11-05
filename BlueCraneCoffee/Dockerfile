@@ -9,8 +9,11 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY . .
 
-# Locate the project file wherever it is in the repo, then restore and publish it
-RUN CSPROJ=$(find . -name "QuoteManager_Pro.csproj" | head -n 1) \
+# Show what the build context contains, then find and publish the project
+RUN echo "=== Top level of build context ===" && ls -la \
+    && echo "=== All project files found ===" && find . -name "*.csproj" -o -name "*.sln" \
+    && CSPROJ=$(find . -name "QuoteManager_Pro.csproj" | head -n 1) \
+    && if [ -z "$CSPROJ" ]; then echo "ERROR: QuoteManager_Pro.csproj not found in build context"; exit 1; fi \
     && echo "Using project: $CSPROJ" \
     && dotnet restore "$CSPROJ" \
     && dotnet publish "$CSPROJ" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false --no-restore
