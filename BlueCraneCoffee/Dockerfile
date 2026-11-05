@@ -7,10 +7,9 @@ EXPOSE 10000
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["QuoteManager_Pro/QuoteManager_Pro.csproj", "QuoteManager_Pro/"]
-RUN dotnet restore "./QuoteManager_Pro/QuoteManager_Pro.csproj"
+COPY ["QuoteManager_Pro.csproj", "."]
+RUN dotnet restore "./QuoteManager_Pro.csproj"
 COPY . .
-WORKDIR "/src/QuoteManager_Pro"
 RUN dotnet build "./QuoteManager_Pro.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Publish stage
