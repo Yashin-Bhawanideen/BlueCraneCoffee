@@ -1,26 +1,27 @@
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
+# Runtime base image
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 WORKDIR /app
-EXPOSE 8083
+EXPOSE 10000
 
-# This stage is used to build the service project
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["BlueCraneCoffee/BlueCraneCoffee.csproj", "BlueCraneCoffee/"]
-RUN dotnet restore "./BlueCraneCoffee/BlueCraneCoffee.csproj"
+COPY ["QuoteManager_Pro/QuoteManager_Pro.csproj", "QuoteManager_Pro/"]
+RUN dotnet restore "./QuoteManager_Pro/QuoteManager_Pro.csproj"
 COPY . .
-WORKDIR /src/BlueCraneCoffee
-RUN dotnet build "./BlueCraneCoffee.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/QuoteManager_Pro"
+RUN dotnet build "./QuoteManager_Pro.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
+# Publish stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./BlueCraneCoffee.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./QuoteManager_Pro.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+# Final stage
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV ASPNETCORE_URLS=http://+:8083
-ENTRYPOINT ["dotnet", "BlueCraneCoffee.dll"]
+
+# Bind to the port Render provides (defaults to 10000)
+ENTRYPOINT ["sh", "-c", "ASPNETCORE_URLS=http://0.0.0.0:${PORT:-10000} exec dotnet QuoteManager_Pro.dll"]
